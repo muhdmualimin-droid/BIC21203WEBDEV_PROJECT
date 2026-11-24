@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>
+      Announcements · Kenyalang Rail
+    </title>
+    <meta name="description" content="Kenyalang Rail student passenger information system">
+    <link rel="icon" href="../assets/img/logo.png" type="image/png">
+    <link rel="stylesheet" href="../assets/css/style.css">
+  </head>
+  <body data-page="announcements" data-admin="true" data-base="../">
+    <a class="skip-link" href="#main">
+      Skip to main content
+    </a>
+    <div class="ticker">
+      <span class="ticker-label">
+        Service
+      </span>
+      <div class="ticker-track" id="tickerTrack">
+        Staff-managed passenger information
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="../index.html">
+          <img class="brand-logo" src="../assets/img/logo.png" alt="">
+          <span class="brand-text">
+            <strong>
+              Kenyalang Rail
+            </strong>
+            <small>
+              Passenger Information System
+            </small>
+          </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">
+          <span class="nav-toggle-bar">
+          </span>
+          <span class="visually-hidden">
+            Menu
+          </span>
+        </button>
+        <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+          <ul>
+            <li>
+              <a href="../index.html">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="../routes.html">
+                Routes
+              </a>
+            </li>
+            <li>
+              <a href="../departures.html">
+                Platform Board
+              </a>
+            </li>
+            <li>
+              <a href="../status.html">
+                Train Status
+              </a>
+            </li>
+            <li>
+              <a href="../alerts.html">
+                Alerts
+              </a>
+            </li>
+            <li>
+              <a href="../news.html">
+                News
+              </a>
+            </li>
+            <li>
+              <a href="../contact.html">
+                Contact
+              </a>
+            </li>
+            <li>
+              <a class="nav-btn" href="../admin/dashboard.html">
+                Operations
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="admin-bar">
+      <nav class="wrap admin-bar-inner" aria-label="Operations centre">
+        <a href="dashboard.html">
+          Operations Dashboard
+        </a>
+        <a href="stations.html">
+          Stations
+        </a>
+        <a href="trains.html">
+          Trains
+        </a>
+        <a href="announcements.html" class="active" aria-current="page">
+          Announcements
+        </a>
+        <a href="updates.html">
+          Train Updates
+        </a>
+        <button class="btn btn-sm" id="logout">
+          Sign out
+        </button>
+        <span id="identity">
+        </span>
+      </nav>
+    </div>
+    <main class="wrap site-main" id="main">
+      <noscript>
+        <p class="flash flash-error">
+          Enable JavaScript to load database information and submit forms.
+        </p>
+      </noscript>
+      <div class="page-head">
+        <span class="kicker">
+          Operations centre
+        </span>
+        <h1>
+          Announcements
+        </h1>
+      </div>
+      <p id="notice" role="status" hidden>
+      </p>
+      <div id="pageContent" hidden>
+        <section class="card" id="editorCard">
+          <h2 id="formTitle">
+            Add announcement
+          </h2>
+          <form id="editor" class="announcement-editor">
+            <input type="hidden" name="id" value="0">
+            <div class="announcement-form-grid">
+              <div class="announcement-field-stack">
+              <div class="field">
+                <label for="title">
+                  Title <span aria-hidden="true">*</span>
+                </label>
+                <input id="title" name="title" type="text" required maxlength="150" aria-describedby="titleError">
+                <span class="field-error" id="titleError" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <label for="type">
+                  Type <span aria-hidden="true">*</span>
+                </label>
+                <select id="type" name="type" required>
+                  <option value="info">
+                    Info
+                  </option>
+                  <option value="delay">
+                    Delay
+                  </option>
+                  <option value="alert">
+                    Alert
+                  </option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="station_id">
+                  Related station
+                </label>
+                <select id="station_id" name="station_id">
+                  <option value="">
+                    Loading…
+                  </option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="expires_at">
+                  Expires at (Malaysia time)
+                </label>
+                <input id="expires_at" name="expires_at" type="datetime-local">
+              </div>
+              </div>
+              <div class="field announcement-message">
+                <label for="body">
+                  Message <span aria-hidden="true">*</span>
+                </label>
+                <textarea id="body" name="body" rows="7" required maxlength="10000" aria-describedby="bodyError"></textarea>
+                <span class="field-error" id="bodyError" aria-live="polite"></span>
+              </div>
+            </div>
+            <div class="acts announcement-actions">
+              <button class="btn" type="submit">
+                Save announcement
+              </button>
+              <button class="btn btn-ghost" type="reset">
+                Clear form
+              </button>
+            </div>
+            <p id="editorFeedback" class="form-feedback" role="status" hidden></p>
+          </form>
+        </section>
+        <section class="card">
+          <h2>
+            All announcements (including expired)
+          </h2>
+          <div id="records">
+          </div>
+        </section>
+        <section class="card">
+          <h2>
+            Audio announcements
+          </h2>
+          <p class="muted">
+            Audio plays on this device. Select a control to enable speech.
+          </p>
+          <div class="acts">
+            <button class="btn btn-ghost" id="speakAll">
+              Speak active alerts
+            </button>
+            <button class="btn btn-ghost" id="repeatAll">
+              Repeat twice
+            </button>
+            <button class="btn btn-danger" id="stopSpeech">
+              Stop
+            </button>
+            <button class="btn btn-ghost" id="autoSpeech" aria-pressed="false">
+              Auto-broadcast: Off
+            </button>
+          </div>
+          <p id="speechStatus" role="status">
+          </p>
+        </section>
+        <div id="announcements" class="stack">
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <div class="footer-col">
+          <strong>
+            Kenyalang Rail
+          </strong>
+          <p>
+            Passenger Information System
+          </p>
+          <p class="muted">
+            BIC21203 · UTHM · Semester I, 2026/2027
+          </p>
+        </div>
+        <div class="footer-col">
+          <strong>
+            Passenger Info
+          </strong>
+          <ul>
+            <li>
+              <a href="../departures.html">
+                Departures
+              </a>
+            </li>
+            <li>
+              <a href="../routes.html">
+                Routes & timetables
+              </a>
+            </li>
+            <li>
+              <a href="../alerts.html">
+                Service alerts
+              </a>
+            </li>
+            <li>
+              <a href="../news.html">
+                News & media
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <strong>
+            Operations
+          </strong>
+          <ul>
+            <li>
+              <a href="../admin/login.html">
+                Staff sign-in
+              </a>
+            </li>
+            <li>
+              <a href="../admin/updates.html">
+                Train updates
+              </a>
+            </li>
+            <li>
+              <a href="../contact.html">
+                Contact the team
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="wrap footer-base">
+        <p>Kenyalang Rail Passenger Information System</p>
+      </div>
+    </footer>
+    <script src="../assets/js/api.js" defer>
+    </script>
+    <script src="../assets/js/announcements.js" defer>
+    </script>
+    <script src="../assets/js/departures.js" defer>
+    </script>
+    <script src="../assets/js/admin.js" defer>
+    </script>
+    <script src="../assets/js/main.js" defer>
+    </script>
+  </body>
+</html>
