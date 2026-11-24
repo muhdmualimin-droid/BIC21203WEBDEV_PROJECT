@@ -1,9 +1,3 @@
-/* =============================================================
-   Kenyalang Rail PIS V2.2 - Frosted Transit
-   Solid information surfaces with limited frosted accents.
-   ============================================================= */
-
-/* ---------- Design tokens ---------------------------------- */
 :root {
     --navy: #101c30;
     --navy-2: #293b52;
@@ -966,4 +960,330 @@ body[data-page="index"] #announcements > .btn { grid-column: 1 / -1; justify-sel
     .nav-toggle,
     .btn { display: none !important; }
     body { background: #fff; }
+}
+
+
+/* ============================================================
+   OPERATIONS LOGIN — CENTERED SPLIT LAYOUT
+   ============================================================ */
+
+body[data-page="login"] .site-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: clamp(1rem, 2.8vh, 1.75rem);
+}
+
+body[data-page="login"] #pageContent,
+body[data-page="login"] #notice {
+    width: 100%;
+}
+
+body[data-page="login"] #notice {
+    max-width: 960px;
+    margin: 0 auto 1rem;
+}
+
+/* Main two-column container */
+
+.login-shell {
+    display: grid;
+    grid-template-columns:
+        minmax(0, .94fr) minmax(0, 1.06fr);
+    width: min(960px, 100%);
+    margin-inline: auto;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    box-shadow: var(--shadow-raised);
+}
+
+/* LEFT PANEL */
+
+.login-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: clamp(1.6rem, 3vw, 2.3rem);
+    color: #e2eaf3;
+    background: linear-gradient(
+        155deg,
+        var(--navy-2),
+        var(--navy) 78%
+    );
+}
+
+.login-intro-top {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+}
+
+.login-emblem {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+}
+
+.login-intro-brand {
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+}
+
+.login-intro-brand span {
+    color: var(--amber);
+}
+
+.login-eyebrow,
+.login-form-eyebrow {
+    display: block;
+    margin-bottom: .55rem;
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+}
+
+.login-eyebrow {
+    color: #ffcd65;
+}
+
+.login-intro h1 {
+    max-width: 15ch;
+    margin-bottom: .7rem;
+    color: #fff;
+    font-size: clamp(1.8rem, 3vw, 2.45rem);
+}
+
+.login-intro-content > p {
+    max-width: 36ch;
+    margin-bottom: 1.25rem;
+    color: #d0dbe7;
+    font-size: .95rem;
+}
+
+/* Feature labels */
+
+.login-feature-list {
+    display: grid;
+    gap: .55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.login-feature-list li {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    font-size: .9rem;
+}
+
+.login-feature-dot {
+    flex: 0 0 7px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--amber);
+}
+
+.login-intro-foot {
+    margin: 0;
+    color: #aebed0;
+    font-size: .78rem;
+}
+
+/* RIGHT PANEL */
+
+.login-form-panel {
+    min-width: 0;
+    padding: clamp(1.5rem, 3.2vw, 2.4rem);
+}
+
+.login-form-header {
+    margin-bottom: 1.4rem;
+}
+
+.login-form-eyebrow {
+    color: var(--amber-2);
+}
+
+.login-form-header h2 {
+    margin-bottom: .3rem;
+    font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+}
+
+.login-form-header p {
+    margin-bottom: 0;
+    color: var(--slate-2);
+    font-size: .9rem;
+}
+
+/* Login fields and button */
+
+.login-form-panel .field {
+    margin-bottom: .9rem;
+}
+
+.login-form-panel .field input {
+    min-height: 44px;
+}
+
+.login-submit {
+    width: 100%;
+    min-height: 44px;
+    margin-top: .15rem;
+}
+
+/* Expandable demo credentials */
+
+.login-demo {
+    margin-top: 1.15rem;
+    padding-top: .9rem;
+    border-top: 1px solid var(--line);
+}
+
+.login-demo summary {
+    color: var(--slate);
+    font-size: .84rem;
+    font-weight: 700;
+}
+
+.login-demo summary:hover {
+    color: var(--navy);
+}
+
+.login-demo-content {
+    margin-top: .7rem;
+    padding: .8rem;
+    border-radius: var(--radius-sm);
+    background: #f6f8fb;
+}
+
+.login-demo-content p {
+    margin: 0 0 .8rem;
+    font-size: .78rem;
+    line-height: 1.5;
+}
+
+.login-demo-content p:last-child {
+    margin-bottom: 0;
+}
+
+.login-demo-content code {
+    color: var(--navy);
+    overflow-wrap: anywhere;
+}
+
+/* Mobile layout */
+
+@media (max-width: 720px) {
+    body[data-page="login"] .site-main {
+        padding-block: 1.25rem 1.75rem;
+    }
+
+    .login-shell {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .login-intro {
+        gap: .55rem;
+        padding: 1.2rem 1.35rem;
+    }
+
+    .login-intro h1 {
+        max-width: none;
+        margin-bottom: .3rem;
+        font-size: 1.7rem;
+    }
+
+    .login-intro-content > p {
+        margin: 0;
+        font-size: .87rem;
+    }
+
+    .login-intro-top,
+    .login-feature-list,
+    .login-intro-foot {
+        display: none;
+    }
+
+    .login-form-panel {
+        padding: 1.4rem 1.35rem;
+    }
+
+    .login-form-header {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+    .login-shell,
+    .login-submit {
+        animation: none;
+        transition: none;
+    }
+}
+
+
+/* ==========================================
+   OPERATIONS LOGIN - MINIMAL FOOTER
+   ========================================== */
+
+body[data-page="login"] .login-footer {
+    padding: 0.65rem 0;
+    margin-top: auto;
+    background: var(--navy);
+    border-top: 2px solid var(--amber);
+}
+
+.login-footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    text-align: center;
+}
+
+.login-footer-title {
+    margin: 0;
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.login-footer-subtitle {
+    margin: 0;
+    color: #aebed0;
+    font-size: 0.75rem;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .login-footer-inner {
+        flex-direction: column;
+        gap: 0.1rem;
+    }
+
+    body[data-page="login"] .login-footer {
+        padding: 0.6rem 0;
+    }
+}
+
+
+/* Operations Login — Full Brand Logo */
+
+.login-brand-logo {
+    display: block;
+    width: min(100%, 260px);
+    height: auto;
+    max-height: 120px;
+    object-fit: contain;
+    object-position: left center;
+    margin: 0 auto;
 }
