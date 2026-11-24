@@ -88,125 +88,162 @@
         </nav>
       </div>
     </header>
-    <main class="wrap site-main" id="main">
-      <noscript>
-        <p class="flash flash-error">
-          Enable JavaScript to load database information and submit forms.
-        </p>
-      </noscript>
-      <div class="page-head">
-        <span class="kicker">
-          Staff access
-        </span>
-        <h1>
-          Operations centre
-        </h1>
-      </div>
-      <p id="notice" role="status" hidden>
-      </p>
-      <div id="pageContent">
-        <div class="auth-wrap">
-          <section class="card auth-card">
-            <img class="auth-brand" src="../assets/img/brand_logo.png" alt="Kenyalang Rail Passenger Information System">
-            <h2>
-              Staff sign-in
-            </h2>
-            <form id="loginForm">
-              <div class="field">
-                <label for="email">
-                  Email address
-                </label>
-                <input id="email" name="email" type="email" required maxlength="150">
-              </div>
-              <div class="field">
-                <label for="password">
-                  Password
-                </label>
-                <input id="password" name="password" type="password" required>
-              </div>
-              <button class="btn" type="submit">
-                Sign in
-              </button>
-            </form>
-            <p class="demo-hint">
-              <strong>Demo staff</strong><br>
-              Email: demo.staff@kenyalang.local<br>
-              Password: DemoStaff!2026<br><br>
-              <strong>Demo admin</strong><br>
-              Email: demo.admin@kenyalang.local<br>
-              Password: DemoAdmin!2026
-            </p>
-          </section>
+    
+<main class="wrap site-main" id="main">
+  <noscript>
+    <p class="flash flash-error">
+      Enable JavaScript to load database information and submit forms.
+    </p>
+  </noscript>
+
+  <p id="notice" role="status" hidden></p>
+
+  <div id="pageContent">
+    <div class="login-shell">
+
+      <!-- LEFT: OPERATIONS INTRODUCTION -->
+      <section class="login-intro"
+              aria-labelledby="login-heading">
+
+
+        <div class="login-intro-top">
+          <img
+            class="login-brand-logo"
+            src="../assets/img/brand_logo.png"
+            alt="Kenyalang Rail Passenger Information System"
+          >
         </div>
-      </div>
-    </main>
-    <footer class="site-footer">
-      <div class="wrap footer-inner">
-        <div class="footer-col">
-          <strong>
-            Kenyalang Rail
-          </strong>
+
+
+        <div class="login-intro-content">
+          <span class="login-eyebrow">
+            STAFF ACCESS
+          </span>
+
+          <h1 id="login-heading">
+            Operations Centre
+          </h1>
+
           <p>
-            Passenger Information System
+            One secure workspace for managing passenger
+            information and railway operations.
           </p>
-          <p class="muted">
-            BIC21203 · UTHM · Semester I, 2026/2027
-          </p>
-        </div>
-        <div class="footer-col">
-          <strong>
-            Passenger Info
-          </strong>
-          <ul>
+
+          <ul class="login-feature-list"
+              aria-label="Available operations">
             <li>
-              <a href="../departures.html">
-                Departures
-              </a>
+              <span class="login-feature-dot"
+                    aria-hidden="true"></span>
+              Train status updates
             </li>
             <li>
-              <a href="../routes.html">
-                Routes & timetables
-              </a>
+              <span class="login-feature-dot"
+                    aria-hidden="true"></span>
+              Service announcements
             </li>
             <li>
-              <a href="../alerts.html">
-                Service alerts
-              </a>
-            </li>
-            <li>
-              <a href="../news.html">
-                News & media
-              </a>
+              <span class="login-feature-dot"
+                    aria-hidden="true"></span>
+              Role-based access
             </li>
           </ul>
         </div>
-        <div class="footer-col">
-          <strong>
-            Operations
-          </strong>
-          <ul>
-            <li>
-              <a href="../admin/login.html">
-                Staff sign-in
-              </a>
-            </li>
-            <li>
-              <a href="../admin/updates.html">
-                Train updates
-              </a>
-            </li>
-            <li>
-              <a href="../contact.html">
-                Contact the team
-              </a>
-            </li>
-          </ul>
+
+        <p class="login-intro-foot">
+          Passenger Information System
+        </p>
+      </section>
+
+      <!-- RIGHT: LOGIN FORM -->
+      <section class="login-form-panel"
+               aria-labelledby="sign-in-heading">
+
+        <div class="login-form-header">
+          <span class="login-form-eyebrow">
+            OPERATIONS PORTAL
+          </span>
+
+          <h2 id="sign-in-heading">
+            Staff sign-in
+          </h2>
+
+          <p>
+            Enter your credentials to access the dashboard.
+          </p>
         </div>
-      </div>
-      <div class="wrap footer-base">
-        <p>Kenyalang Rail Passenger Information System</p>
-      </div>
-    </footer>
+
+        <form id="loginForm">
+          <div class="field">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="username"
+              required
+              maxlength="150"
+            >
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+            >
+          </div>
+
+          <button
+            class="btn login-submit"
+            type="submit">
+            Sign in
+          </button>
+        </form>
+
+        <!-- COLLAPSIBLE DEMO CREDENTIALS -->
+        <details class="login-demo">
+          <summary>Demo accounts (local testing)</summary>
+
+          <div class="login-demo-content">
+            <p>
+              <strong>Demo staff</strong><br>
+              Email:
+              <code>demo.staff@kenyalang.local</code><br>
+              Password:
+              <code>DemoStaff!2026</code>
+            </p>
+
+            <p>
+              <strong>Demo admin</strong><br>
+              Email:
+              <code>demo.admin@kenyalang.local</code><br>
+              Password:
+              <code>DemoAdmin!2026</code>
+            </p>
+          </div>
+        </details>
+
+      </section>
+    </div>
+  </div>
+</main>
+    
+<!-- Minimal Footer - Operations Login -->
+<footer class="site-footer login-footer">
+  <div class="wrap login-footer-inner">
+    <p class="login-footer-title">
+      © 2026 Kenyalang Rail PIS
+    </p>
+
+    <p class="login-footer-subtitle">
+      BIC21203 · UTHM · Academic Project
+    </p>
+  </div>
+</footer>
+
     <script src="../assets/js/api.js" defer>
     </script>
     <script src="../assets/js/announcements.js" defer>
