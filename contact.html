@@ -110,32 +110,58 @@
             <h2>
               Send a message
             </h2>
-            <form id="contactForm">
+            <!-- Handled by assets/js/contact.js (Member 4). novalidate: our own messages
+                 replace the browser's pop-ups; the server checks everything again. -->
+            <form id="contactMessageForm" novalidate>
+              <div class="field">
+                <label for="topic">
+                  Topic
+                </label>
+                <select id="topic" name="topic" required>
+                  <option value="">Choose a topic</option>
+                  <option value="data">Data problem</option>
+                  <option value="accessibility">Accessibility</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="other">Other</option>
+                </select>
+                <span class="field-error" id="topic-error" hidden></span>
+              </div>
               <div class="field">
                 <label for="name">
                   Your name
                 </label>
-                <input id="name" name="name" type="text" required maxlength="100">
+                <input id="name" name="name" type="text" required maxlength="100" autocomplete="name">
+                <span class="field-error" id="name-error" hidden></span>
               </div>
               <div class="field">
                 <label for="email">
                   Email address
                 </label>
-                <input id="email" name="email" type="email" required maxlength="150">
+                <input id="email" name="email" type="email" required maxlength="150" autocomplete="email">
+                <span class="field-error" id="email-error" hidden></span>
               </div>
               <div class="field">
                 <label for="subject">
                   Subject
                 </label>
-                <input id="subject" name="subject" type="text" required maxlength="150">
+                <input id="subject" name="subject" type="text" required maxlength="130">
+                <span class="field-error" id="subject-error" hidden></span>
               </div>
               <div class="field">
                 <label for="body">
                   Message (10–5000 characters)
                 </label>
-                <textarea id="body" name="body" rows="5" required maxlength="5000">
-                </textarea>
+                <textarea id="body" name="body" rows="5" required minlength="10" maxlength="5000" aria-describedby="bodyCount"></textarea>
+                <span class="muted" id="bodyCount">0 / 5000 characters</span>
+                <span class="field-error" id="body-error" hidden></span>
               </div>
+              <!-- Honeypot: hidden from people and screen readers; bots fill it in. -->
+              <div class="visually-hidden" aria-hidden="true">
+                <label for="website">Leave this field empty</label>
+                <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+              </div>
+              <!-- Result of sending (success or error), right next to the button. -->
+              <p id="contactStatus" tabindex="-1" hidden></p>
               <button class="btn" type="submit">
                 Send message
               </button>
@@ -157,7 +183,8 @@
             </h3>
             <p>
               Report a data problem, ask about station facilities, or leave feedback on this
-              prototype.
+              prototype. Lifts and other facilities for each station are listed on the
+              <a href="routes.html">route pages</a>.
             </p>
             <p class="muted">
               This form stores a message for the project team. It does not send an email or
@@ -241,6 +268,8 @@
     <script src="assets/js/departures.js" defer>
     </script>
     <script src="assets/js/public.js" defer>
+    </script>
+    <script src="assets/js/contact.js" defer>
     </script>
     <script src="assets/js/main.js" defer>
     </script>
