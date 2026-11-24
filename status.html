@@ -6,7 +6,7 @@
     <title>
       Train Status · Kenyalang Rail
     </title>
-    <meta name="description" content="Kenyalang Rail student passenger information system">
+    <meta name="description" content="Look up a train's condition, scheduled stops and latest reported journey status">
     <link rel="icon" href="assets/img/logo.png" type="image/png">
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
@@ -91,65 +91,90 @@
     <main class="wrap site-main" id="main">
       <noscript>
         <p class="flash flash-error">
-          Enable JavaScript to load database information and submit forms.
+          Enable JavaScript to load train records and the latest reports.
         </p>
       </noscript>
       <div class="page-head">
         <span class="kicker">
-          Passenger information
+          Train lookup
         </span>
         <h1>
-          Train Status
+          Where is my train?
         </h1>
+        <p>
+          Find a train by number, type or direction, then open it to see its condition,
+          scheduled stops and latest reported journey status. A train's condition
+          (in service, maintenance or retired) is separate from its journey status.
+        </p>
       </div>
       <p id="notice" role="status" hidden>
       </p>
-      <div id="pageContent">
-        <p>
-          Search current journey reports by train number, line or station. Train condition
-          (active, maintenance or retired) is separate from journey status.
-        </p>
-        <div class="grid grid-3 filters">
-          <div class="field">
-            <label for="search">
-              Search train number
-            </label>
-            <input id="search" name="search" type="search">
-          </div>
-          <div class="field">
-            <label for="lineFilter">
-              Railway line
-            </label>
-            <select id="lineFilter" name="lineFilter">
-              <option value="">
-                All lines
-              </option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="stationFilter">
-              Station
-            </label>
-            <select id="stationFilter" name="stationFilter">
-              <option value="">
-                All stations
-              </option>
-            </select>
-          </div>
+      <div class="grid grid-3 filters">
+        <div class="field">
+          <label for="trainSearch">
+            Search trains
+          </label>
+          <input id="trainSearch" name="trainSearch" type="search" placeholder="e.g. KM201 or ETS">
         </div>
-        <section class="card">
-          <div id="board" aria-live="polite">
-            Loading departures…
-          </div>
-          <p id="refreshStatus" class="muted" role="status">
-            Refresh every 15 seconds while this page is visible.
-          </p>
-          <p class="muted">
-            Staff reports and labelled educational demo data. Times use Malaysia time (UTC+8).
-            Historical reports remain visible until staff replace them.
-          </p>
-        </section>
+        <div class="field">
+          <label for="lineFilter">
+            Railway line
+          </label>
+          <select id="lineFilter" name="lineFilter">
+            <option value="">
+              All lines
+            </option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="conditionFilter">
+            Train condition
+          </label>
+          <select id="conditionFilter" name="conditionFilter">
+            <option value="">
+              All conditions
+            </option>
+            <option value="active">
+              In service
+            </option>
+            <option value="maintenance">
+              Maintenance
+            </option>
+            <option value="retired">
+              Retired
+            </option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-ghost" id="clearFilters">
+          Clear filters
+        </button>
       </div>
+      <section class="card" aria-labelledby="resultsHeading">
+        <h2 id="resultsHeading">
+          Trains
+        </h2>
+        <div id="results" aria-live="polite">
+        </div>
+      </section>
+      <section class="card" id="detail" hidden aria-live="polite">
+        <div class="train-head">
+          <h2 id="detailTitle">
+          </h2>
+          <span id="detailCondition">
+          </span>
+        </div>
+        <p id="detailMeta" class="muted">
+        </p>
+        <p class="acts" id="detailActions">
+        </p>
+        <div id="detailBody">
+        </div>
+      </section>
+      <p class="muted">
+        Journey reports are staff-managed or labelled educational demo data, shown with
+        their source and Malaysia time (UTC+8). Use the platform board page for the
+        continuously refreshing departure list.
+      </p>
     </main>
     <footer class="site-footer">
       <div class="wrap footer-inner">
@@ -176,7 +201,7 @@
             </li>
             <li>
               <a href="routes.html">
-                Routes & timetables
+                Routes &amp; timetables
               </a>
             </li>
             <li>
@@ -186,7 +211,7 @@
             </li>
             <li>
               <a href="news.html">
-                News & media
+                News &amp; media
               </a>
             </li>
           </ul>
@@ -222,9 +247,14 @@
     </script>
     <script src="assets/js/announcements.js" defer>
     </script>
-    <script src="assets/js/departures.js" defer>
+    <script>
+      // Train Status does not use the departure board. This fallback protects
+      // against an older cached public.js that still calls Board.start().
+      window.Board = window.Board || { start: async function () {} };
     </script>
-    <script src="assets/js/public.js" defer>
+    <script src="assets/js/public.js?v=2" defer>
+    </script>
+    <script src="assets/js/status.js?v=2" defer>
     </script>
     <script src="assets/js/main.js" defer>
     </script>

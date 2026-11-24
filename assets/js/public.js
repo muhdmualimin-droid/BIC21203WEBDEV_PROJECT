@@ -105,7 +105,8 @@ function bindContactForm() {
 async function startPublic() {
   if (PIS.page === 'routes') await loadRoutesPage();
   if (PIS.page === 'route') await loadRouteDetailsPage();
+  if (PIS.page === 'status' && typeof TrainStatus !== 'undefined') await TrainStatus.start();
 
   bindContactForm();
-  await Board.start();
+  if (typeof Board !== 'undefined') await Board.start();
 }
