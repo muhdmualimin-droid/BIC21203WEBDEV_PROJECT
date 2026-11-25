@@ -227,7 +227,7 @@ img {
 .primary-nav a:hover,
 .primary-nav a:focus-visible { background: rgba(255, 255, 255, .12); color: #fff; }
 .primary-nav a.active { color: var(--navy); background: var(--amber); font-weight: 750; }
-.nav-btn { background: rgba(255, 255, 255, .12) !important; color: #fff !important; }
+.nav-btn { background: transparent !important; color: #FFD27A !important; }
 .nav-btn:hover { background: var(--amber) !important; color: var(--navy) !important; }
 
 .nav-toggle {
@@ -1287,3 +1287,26 @@ body[data-page="login"] .login-footer {
     object-position: left center;
     margin: 0 auto;
 }
+
+
+/* Operations — Default */
+.nav-btn {
+    background: transparent !important;
+    color: #FFD27A !important;
+}
+
+/* Operations — Hover */
+.primary-nav a.nav-btn:hover,
+.primary-nav a.nav-btn:focus-visible {
+    background: var(--amber) !important;
+    color: var(--white) !important;
+    font-weight: 400;
+}
+
+/* Operations — Active Page */
+body[data-admin="true"] .primary-nav a.nav-btn {
+    background: var(--amber) !important;
+    color: var(--white) !important;
+    font-weight: 400;
+}
+
