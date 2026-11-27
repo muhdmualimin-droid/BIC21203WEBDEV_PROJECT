@@ -27,6 +27,23 @@ async function initialisePage() {
     const session = await PIS.api('auth.php');
     PIS.csrf = session.data.csrf;
     PIS.user = session.data.user;
+
+/* Session-aware Operations navigation */
+const operationsLink = document.querySelector(
+    ".primary-nav a.nav-btn"
+);
+
+if (operationsLink) {
+    const isLoggedIn = PIS.user &&
+        ["admin", "staff"].includes(PIS.user.role);
+
+    operationsLink.href = PIS.base + (
+        isLoggedIn
+            ? "admin/dashboard.html"
+            : "admin/login.html"
+    );
+}
+
     await initialiseFeatures();
   } catch (error) {
     PIS.notice(error.message, true);

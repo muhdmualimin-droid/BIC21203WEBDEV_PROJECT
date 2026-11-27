@@ -324,9 +324,18 @@ async function startRecordManager(page, isAdmin) {
 
   await reload();
 }
-
 async function startAdmin() {
-  if (PIS.page === 'login') {
+    if (PIS.page === 'login') {
+
+        // Skip login form if session is already active.
+        if (PIS.user) {
+            window.location.replace('dashboard.html');
+            return;
+        }
+
+        // Existing login form handler continues below.
+        PIS.bindForm('loginForm', async data => {
+
     PIS.bindForm('loginForm', async data => {
       const result = await PIS.api('auth.php', { ...data, action: 'login' });
       PIS.csrf = result.data.csrf;
