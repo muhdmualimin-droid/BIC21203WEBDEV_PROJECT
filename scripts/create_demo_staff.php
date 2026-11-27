@@ -25,13 +25,13 @@ try {
     );
     $statement->execute([
         'Demo Staff',
-        'demo.staff@kenyalang.local',
+        'demo.staff@Belang.local',
         password_hash('DemoStaff!2026', PASSWORD_DEFAULT),
         'staff',
     ]);
     $statement->execute([
         'Demo Administrator',
-        'demo.admin@kenyalang.local',
+        'demo.admin@Belang.local',
         password_hash('DemoAdmin!2026', PASSWORD_DEFAULT),
         'admin',
     ]);

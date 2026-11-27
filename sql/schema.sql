@@ -1,5 +1,5 @@
 -- ============================================================================
---  Kenyalang Rail PIS  ::  database schema
+--  Belang Rail PIS  ::  database schema
 --  MySQL 5.7+ / MariaDB 10.4+
 --
 --  Fresh installation only, through scripts/install.php or manually:

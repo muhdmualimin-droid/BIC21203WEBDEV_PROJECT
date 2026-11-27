@@ -19,8 +19,8 @@ try {
     $q=$pdo->prepare('INSERT INTO users (user_id,name,email,password_hash,role) VALUES (?,?,?,?,?)');
     $q->execute([1,'System Administrator','admin@pis.local',password_hash($admin,PASSWORD_DEFAULT),'admin']);
     $q->execute([2,'Nurul Aisyah','staff@pis.local',password_hash($staff,PASSWORD_DEFAULT),'staff']);
-    $q->execute([3,'Demo Staff','demo.staff@kenyalang.local',password_hash('DemoStaff!2026',PASSWORD_DEFAULT),'staff']);
-    $q->execute([4,'Demo Administrator','demo.admin@kenyalang.local',password_hash('DemoAdmin!2026',PASSWORD_DEFAULT),'admin']);
+    $q->execute([3,'Demo Staff','demo.staff@Belang.local',password_hash('DemoStaff!2026',PASSWORD_DEFAULT),'staff']);
+    $q->execute([4,'Demo Administrator','demo.admin@Belang.local',password_hash('DemoAdmin!2026',PASSWORD_DEFAULT),'admin']);
     foreach(sql_statements(file_get_contents(__DIR__.'/../sql/seed.sql')) as $s) $pdo->exec($s);
     $pdo->commit();echo "Fresh installation complete. Demo routes and articles are educational samples.\n";
 } catch(Throwable $e) {

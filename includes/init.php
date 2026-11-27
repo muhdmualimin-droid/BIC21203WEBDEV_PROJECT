@@ -10,7 +10,7 @@ header('Cache-Control: no-store');
 header('X-Content-Type-Options: nosniff');
 
 set_exception_handler(function (Throwable $error): never {
-    error_log('[Kenyalang V2] ' . $error->getMessage());
+    error_log('[Belang V2] ' . $error->getMessage());
 
     if ($error instanceof PDOException && $error->getCode() === '23000') {
         fail('This record conflicts with existing or related data.', 409);

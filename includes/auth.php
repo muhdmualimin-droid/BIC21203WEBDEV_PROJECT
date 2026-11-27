@@ -1,6 +1,6 @@
 <?php
 ini_set('session.use_strict_mode', '1');
-session_name('KENYALANG_V2');
+session_name('Bw_V2');
 session_set_cookie_params(['httponly'=>true, 'secure'=>!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off', 'samesite'=>'Lax', 'path'=>'/']);
 session_start();
 if (isset($_SESSION['user_id']) && time() - ($_SESSION['last_activity'] ?? 0) > 3600) {
