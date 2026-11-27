@@ -325,16 +325,27 @@ async function startRecordManager(page, isAdmin) {
   await reload();
 }
 async function startAdmin() {
-    if (PIS.page === 'login') {
+  if (PIS.page === 'login') {
+    // An authenticated Admin/Staff user should enter Operations directly.
+    if (PIS.user) {
+      window.location.replace('dashboard.html');
+      return;
+    }
 
-        // Skip login form if session is already active.
-        if (PIS.user) {
-            window.location.replace('dashboard.html');
-            return;
-        }
+    // Show/Hide password without changing the field value or submitting the form.
+    const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('togglePassword');
 
-        // Existing login form handler continues below.
-        PIS.bindForm('loginForm', async data => {
+    if (passwordInput && togglePassword) {
+      togglePassword.addEventListener('click', () => {
+        const isShowing = passwordInput.type === 'password';
+        passwordInput.type = isShowing ? 'text' : 'password';
+        togglePassword.setAttribute('aria-pressed', String(isShowing));
+        const label = isShowing ? 'Hide password' : 'Show password';
+        togglePassword.setAttribute('aria-label', label);
+        togglePassword.title = label;
+      });
+    }
 
     PIS.bindForm('loginForm', async data => {
       const result = await PIS.api('auth.php', { ...data, action: 'login' });

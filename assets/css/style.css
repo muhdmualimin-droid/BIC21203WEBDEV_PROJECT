@@ -1443,3 +1443,50 @@ body[data-admin="true"] .primary-nav a.nav-btn {
         right: 12px;
     }
 }
+
+
+/* Login — accessible eye-icon password visibility toggle */
+.password-input-wrap {
+    position: relative;
+}
+
+.login-form-panel .password-input-wrap input {
+    padding-right: 3.5rem;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: .4rem;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: #30364F;
+    cursor: pointer;
+    transition: color .18s ease, background-color .18s ease;
+}
+
+.password-toggle:hover {
+    background: rgba(48, 54, 79, .08);
+}
+
+.password-toggle:focus-visible {
+    outline: 2px solid #30364F;
+    outline-offset: 2px;
+}
+
+.password-toggle svg { display: block; }
+.password-toggle .icon-eye-off { display: none; }
+.password-toggle[aria-pressed="true"] .icon-eye { display: none; }
+.password-toggle[aria-pressed="true"] .icon-eye-off { display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+    .password-toggle { transition: none; }
+}
